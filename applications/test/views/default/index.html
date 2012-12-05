@@ -1,0 +1,76 @@
+{{extend 'layout.html'}}
+
+<div class="container" style="overflow:hidden"><!-- Container -->
+	<div class="row-fluid"><!-- Fluid Row -->
+
+
+		<div class="span8">
+			<div class="assassins-pad">
+				<div class="assassins-padback">
+					<div class="assassins-padtape"></div>
+					<div class="assassins-padheader">
+						<div class="assassins-padheadertext">
+							Assassins
+						</div>
+					</div>
+					<div class="assassins-padcontent">
+						<p>Assassins is played with a group of players that reside near each other. They are given targets and eliminate each other until there is only one player left.</p>
+                        <BR>&nbsp;<BR>
+                        <p>To set up:</p>
+                        <p>Create a game under the “Create” tab.</p>
+						<ul>
+							<li><p>A game should have at least four players</p>
+							<li><p>A game can be played with as few as two players</p>
+							<li><p>There is so upper limit to players in a game</p>
+                        </ul>
+                        <BR>&nbsp;<BR>
+                        <p>To play:</p>
+                        <ul>
+							<li><p>Once the game is created:</p>
+							<ul>
+								<li><p>Players will join via the “Join” tab</p>
+                            </ul>
+							<li><p>Once all players have joined:</p>
+							<ul>
+								<li><p>Have the game creator start the game on the game screen</p>
+								<li><p>Initial targets will now be assigned</p>
+								<ul>
+									<li><p>Player will know who they are targeting</p>
+									<li><p>Player will not know who is targeting them</p>
+                                </ul>
+                            </ul>
+							<li><p>Once targets are assigned:</p>
+							<ul>
+								<li><p>Review the specific rules set up by the game creator on the game's screen</p>
+								<ul>
+									<li><p>Typical rules include hitting the target with a sock, tagging them, or whispering in their ear</p>
+									<li><p>Your specific game may have “safe zones” set up where targets cannot be eliminated</p>
+                                    </ul>
+								<li><p>Track down your target and avoid being taken out!</p>
+                            </ul>
+						</ul>
+					</div><!-- End Pad Content -->
+				</div><!-- End Pad Back -->
+			</div><!-- End Pad -->
+		</div><!-- End Span 12 -->
+
+
+		<div class="span4 hidden-phone"><!-- Polaroid Picture -->
+			<div class="assassins-polaroid">
+				<div class="assassins-polaroidback-nohover">
+					<div class="assassins-polaroidcontent">
+						<img class="assassins-polaroidpicture" src="{{=URL('static', 'images/assassins.png')}}" alt="">
+						<div class="assassins-polaroidtext">
+						</div>
+						<div class="assassins-polaroidtext2">
+						</div>
+						<div class="assassins-polaroidpin"></div>
+						<div class="assassins-vignette"></div>
+					</div>
+				</div>
+			</div>
+		</div><!-- End Polaroid Picture -->
+
+
+	</div><!-- End Fluid Row -->
+</div><!-- End Container-->

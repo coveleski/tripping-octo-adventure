@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+
+<div class="row-fluid">
+	<div class="span12">
+		<div class="assassins-pad">
+			<div class="assassins-padback" >
+				<div class="assassins-padtape"></div>
+				<div class="assassins-padheader">
+					<div class="assassins-padheadertext">
+						{{=T( request.args(0).replace('_',' ').capitalize() )}}
+					</div><!-- End Pad Header Text -->
+				</div><!-- End Pad Header -->
+				<div class="assassins-padcontent">
+					<div id="web2py_user_form">
+						{{
+						if request.args(0)=='login':
+								if not 'register' in auth.settings.actions_disabled:
+										form.add_button(T('Register'),URL(args='register'),_class='btn')
+								pass
+								if not 'request_reset_password' in auth.settings.actions_disabled:
+										form.add_button(T('Lost Password'),URL(args='request_reset_password'),_class='btn')
+								pass
+						pass
+						=form
+						}}
+					</div><!-- End Login Form -->
+				</div><!-- End Pad Content -->
+			</div><!-- End Pad Back -->
+		</div><!-- End Pad -->
+	</div><!-- End Span 6 -->
+</div><!-- End Fluid Row -->
+
+
+<script language="javascript"><!--
+jQuery("#web2py_user_form input:visible:enabled:first").focus();
+{{if request.args(0)=='register':}}
+    web2py_validate_entropy(jQuery('#auth_user_password'),100);
+{{elif request.args(0)=='change_password':}}
+    web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+{{pass}}
+//--></script>

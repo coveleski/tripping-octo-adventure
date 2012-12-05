@@ -1,0 +1,134 @@
+{{extend 'layout.html'}}
+{{from gluon.contrib.markdown import markdown2}}
+<!-- ============================================================ -->
+<div class="container" style="overflow:hidden"><!-- Container -->
+	<div class="row-fluid"><!-- Fluid Row -->
+		<div class="span4"><!-- Span4 -->
+
+
+			<div class="row-fluid"><!-- Fluid Row -->
+				<div class="assassins-polaroid">
+					<div class="assassins-polaroidback-nohover" href="#">
+						<div class="assassins-polaroidcontent">
+							<img class="assassins-polaroidpicture" src="{{=polaroid['image']}}" alt="">
+							<div class="assassins-polaroidtext">{{=polaroid['text1']}}</div>
+							<div class="assassins-polaroidtext2">{{=polaroid['text2']}}</div>
+							<div class="assassins-polaroidpin"></div>
+							<div class="assassins-vignette"></div>
+							{{if polaroid['status'] == 'DEAD':}}<div class="assassins-polaroiddead"></div>{{pass}}
+							{{if polaroid['status'] == 'HALF_DEAD':}}<div class="assassins-polaroidhalfalive"></div>{{pass}}
+							{{if polaroid['status'] == 'FINISHED':}}<div class="assassins-polaroidGameOver"></div>{{pass}}
+						</div><!-- End Polaroid Content -->
+					</div><!-- End Polaroid Back -->
+				</div><!-- End Polaroid -->
+			</div><!-- End Fluid Row -->
+
+			{{if btn['all']:}}
+			<div class="row-fluid"><!-- Fluid Row -->
+				<div class="assassins-pad">
+					<div class="assassins-padback">
+						<div class="assassins-padtape"></div>
+						<div class="assassins-padcontent">
+							</br>
+							{{if btn['start']:}}<div class='abtn-large'>{{=formBtn['start']}}</div>{{pass}}
+							{{if btn['join']:}}<div class='abtn-large'>{{=formBtn['join']}}</div>{{pass}}
+							{{if btn['target']:}}<div class='abtn-large'>{{=formBtn['target']}}</div>{{pass}}
+							{{if btn['dead']:}}<div class='abtn-small'>{{=formBtn['dead']}}</div>{{pass}}
+							{{if btn['leave']:}}<div class='abtn-small'>{{=formBtn['leave']}}</div>{{pass}}
+							{{if btn['edit']:}}<div class='abtn-small'><a class="btn btn-small btn-block" href="{{=URL('kiwi', 'editgame', args=game.id)}}">(Host) Edit Game</a></div>{{pass}}
+						</div><!-- End Pad Content -->
+					</div><!-- End Pad Back -->
+				</div><!-- End Pad -->
+			</div><!-- End Fluid Row -->
+			{{pass}}
+
+		</div><!-- End Span4 -->
+		<div class="span8">
+
+
+			<div class="assassins-pad">
+				<div class="assassins-padback">
+					<div class="assassins-padtape"></div>
+					<div class="assassins-padheader">
+						<div class="assassins-padheadertext">
+							{{=game.name}}
+						</div><!-- End Pad Header Text -->
+					</div><!-- End Pad Header -->
+					<div class="assassins-padcontent">
+						<div class="row-fluid"><!-- Fluid Row -->
+							<div class="row-fluid">
+								<div class="span4">
+									<h4>Location</h4>
+									<p>{{=game.location}}</p>
+								</div><!-- End Span 6 -->
+								<div class="span4">
+									<h4>Expected Start Date</h4>
+									<p>{{=game.expected_start_date}}</p>
+								</div><!-- End Span 6 -->
+								<div class="span4">
+									<h4>Host</h4>
+									<p>{{=db.auth_user(game.host_id).first_name}} {{=db.auth_user(game.host_id).last_name}}</p>
+								</div><!-- End Span 6 -->
+							</div>
+							<p>{{=XML(markdown2.markdown(game.description))}}</p>
+						</div><!-- End Row Fluid -->
+					</div><!-- End Pad Content -->
+				</div><!-- End Pad Back -->
+			</div><!-- End Pad -->
+
+			<br>
+
+			<div class="row-fuid">
+				<div class="assassins-pad">
+					<div class="assassins-padback">
+					<div class="assassins-padtape"></div>
+						<div class="assassins-padheader">
+							<div class="assassins-padheadertext">
+								Players
+							</div><!-- End Pad Header Text -->
+						</div><!-- End Pad Header -->
+						<div class="assassins-padcontent">
+						{{if gameStats['rules'] == 'Assassins':}}
+							<div class="row-fluid">
+								<div class="span6">
+									<h4>Players</h4>
+									<p>{{=gameStats['players']}}</p>
+								</div><!-- End Span 6 -->
+								<div class="span6">
+									<h4>Players Remaining</h4>
+									<p>{{=gameStats['alive']}}</p>
+								</div><!-- End Span 6 -->
+							</div><!-- End Fluid Row -->
+						{{pass}}
+						{{if gameStats['rules'] == 'Humans v. Zombies':}}
+							<div class="row-fluid">
+								<div class="span4">
+									<h4>Players</h4>
+									<p>{{=gameStats['players']}}</p>
+								</div><!-- End Span 4 -->
+								<div class="span4">
+									<h4>Humans</h4>
+									<p>{{=gameStats['alive']}}</p>
+								</div><!-- End Span 4 -->
+								<div class="span4">
+									<h4>Zombies</h4>
+									<p>{{=gameStats['dead']}}</p>
+								</div><!-- End Span 4 -->
+							</div><!-- End Fluid Row -->
+						{{pass}}
+							<div class="row-fluid">
+								<h4>Player List</h4>
+								{{for player in players:}}
+									<p {{if player['status'] == 'DEAD':}}style="text-decoration: line-through"{{pass}}>{{=player['name']}}</p>
+								{{pass}}
+							</div><!-- End Fluid Row -->
+						</div><!-- End Pad Content -->
+					</div><!-- End Pad Back -->
+				</div><!-- End Pad -->
+			</div><!-- End Row Fluid -->
+
+
+		</div><!-- End Span 8 -->
+	</div><!-- End Row Fluid -->
+</div><!-- End Container-->
+<!-- ============================================================ -->
